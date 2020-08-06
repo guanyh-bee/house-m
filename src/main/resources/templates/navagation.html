@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>南发公司国有资产审批统计平台</title>
+    <script src="/js/jquery-3.5.1.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 
-<nav class="navbar navbar-default" th:fragment="navagation">
+
+</head>
+<div th:fragment="navgation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">南发公司国有资产审批统计平台</span>
-
-            </button>
-            <a class="navbar-brand" href="/">南发</a>
+            <a class="navbar-brand" href="" th:href="@{/main}">主页</a>
         </div>
-
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索内容">
-                </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.user}!=null"><a href="/publish">发布</a></li>
-                <li th:if="${session.user==null}"><a
-                        href="https://github.com/login/oauth/authorize?client_id=Iv1.17b170297832cc61&redirect_uri=http://localhost:9999/callback&scope=user&state=11">登录</a>
-                </li>
-                <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">
-                        <span th:text="${session.user.getName()}"></span>
-                        <span class="caret"></span>
+        <div>
+            <ul class="nav navbar-nav">
+                <li ><a href="#">统计</a></li>
+                <li><a href="#">申请和审批</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        查询与统计 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/profile/questions">我的问题</a></li>
-                        <li><a href="/logout">退出登录</a></li>
-
+                        <li><a href="#">调动申请审批痕迹查询</a></li>
+                        <li><a href="#">按楼盘统计</a></li>
+                        <li><a href="#">调转明细</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">财务明细</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/list">安置房明细</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"  th:text="${session.user.username}"></a></li>
+            </ul>
+        </div>
     </div>
 </nav>
+</div>
+</html>

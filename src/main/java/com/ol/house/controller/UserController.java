@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,7 +62,28 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
-        return null;
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session){
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        List<User> users = userMapper.selectByExample(example);
+        if(users.size()==0){
+            model.addAttribute("msg","用户不存在");
+            return "login";
+        }else {
+            String salt = users.get(0).getSalt();
+            String content = salt + password;
+            String passwd = DigestUtils.md5DigestAsHex(content.getBytes());
+            String srcPassword = users.get(0).getPassword();
+            if(passwd.equals(srcPassword)){
+                session.setAttribute("user",users.get(0));
+                return "main";
+            }else {
+                model.addAttribute("msg","密码错误");
+                return "login";
+            }
+        }
+
+
+
     }
 }

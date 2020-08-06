@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>南发公司国有资产审批统计平台</title>
+    <script src="js/jquery-3.5.1.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+
+
+</head>
+<body>
+<div th:replace="navagation::nav"></div>
+<div class="container-fluid main">
+
+    <div class="row">
+        <div class="col-xs-9 col-sm-9 col-lg-9 col-md-9 col-xs-offset-1 col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th>位置</th>
+                        <th>建筑面积</th>
+                        <th>套内面积</th>
+                        <th>购置价格</th>
+                        <th>点击查看详情</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="house:${houses}">
+
+                        <td th:text="${house.location}">Anna</td>
+                        <td th:text="${house.areaArchitecture}">Pitt</td>
+                        <td th:text="${house.areaRoom}">35</td>
+                        <td th:text="${house.buyPrice}">New York</td>
+                        <td><a th:href="@{'/house/'+${house.id}}">查看详情</a></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

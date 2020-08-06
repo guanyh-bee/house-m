@@ -35,7 +35,9 @@
         <table  tableName="s_user" domainObjectName="User" >
             <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
         </table>
-
+        <table  tableName="house_info" domainObjectName="House" >
+            <generatedKey column="id" sqlStatement="JDBC"></generatedKey>
+        </table>
 
     </context>
 </generatorConfiguration>
